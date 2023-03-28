@@ -1,0 +1,43 @@
+
+      /* CSS styles for the todo list */
+      .todo-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #f7f7f7;
+        border-radius: 5px;
+      }
+      
+      .todo-item label {
+        margin-right: 10px;
+      }
+      
+      .todo-item button {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+      
+      .todo-item button:hover {
+        background-color: #c62828;
+      }
+    .submit{
+        color: whitesmoke;
+        background-color: blue;
+    }
+
+   .todo-list{
+
+    box-sizing: border-box;
+    width: 50%;
+    padding-top: 10;
+    border:orange; border-width:5px; border-style:solid;
+    text-align: center;
+    margin: auto;
+
+   }
