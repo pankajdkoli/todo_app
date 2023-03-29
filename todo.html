@@ -10,18 +10,23 @@
 
 <body>
     <form id="todo-form" class="todo-list">
-        <h1>Todo List</h1>
-
-        <label for="todo-input">Add Todo:</label>
-        <input type="text" id="todo-input" name="todo-input">
-        <button type="submit" class="submit">Add</button>
+        <div>
+            <h1>Todo List</h1>
+        </div>
+        <div class="border">
+            <label for="todo-input">Add Todo:</label>
+            <input type="text" id="todo-input" name="todo-input" class="todo-input">
+            <button type="submit" class="submit">Add</button>
+        </div>
 
     </form>
-    <div id="todo-list" class="todo-list">
-    <!--     List of todos will be added here -->
-    </div>
+    <div id="edit-popup" class="popup"></div>
 
-    <!-- <form  id="todo-form" class="todo-list">
+    <div id="todo-list" class="todo-list">
+        <!--     List of todos will be added here -->
+        <!-- </div> -->
+
+        <!-- <form  id="todo-form" class="todo-list">
         <input type="text" placeholder="Add a new task" id="newTask">
         <button type="submit" id="addtask" class="basic-btn">Add</button>
       </form>
@@ -32,7 +37,7 @@
           <button class="delete-task">Delete</button>
         </li>
       </ul> -->
-    <script src="todo.js"> </script>
+        <script src="todo.js"> </script>
 </body>
 
 </html>

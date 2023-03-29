@@ -6,14 +6,10 @@ const list = document.querySelector('#todo-list');
 let todos = [];
 
 // console.log(form)
-// console.log(list)
 // console.log( document.body.firstChild)
-const a1 = document.body
+
 let a = document.getElementById('todo-list')
 console.log(a.firstElementChild)
-
-
-
 // const red = () =>{
 //   let a = document.getElementsByClassName("submit")​
 
@@ -29,6 +25,7 @@ function renderTodos() {
     const todoItem = document.createElement('div');
     todoItem.classList.add('todo-item');
     console.log(todoItem)
+    console.log(todos)
     
     const label = document.createElement('label'); //lable
     label.textContent = todo;
@@ -51,7 +48,7 @@ function renderTodos() {
       todos = todos.filter(item => item !== todo);
       renderTodos();
     });
-    
+  
     // Add event listener for edit button
     editBtn.addEventListener('click', () => {
       const newTodo = prompt('Enter new todo:', todo);
@@ -75,3 +72,11 @@ form.addEventListener('submit', event => {
     renderTodos();
   }
 });
+
+
+let b = setTimeout(()=>{
+    if(editBtn == editBtn){
+        alert("edit sucessfully")
+    }
+}, 1000)
+console.log(b)
