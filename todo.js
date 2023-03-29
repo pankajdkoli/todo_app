@@ -13,8 +13,6 @@ console.log(a.firstElementChild)
 // const red = () =>{
 //   let a = document.getElementsByClassName("submit")​
 
-// }  
-
 // Function to render the todo list
 function renderTodos() {
   // Clear the list
@@ -46,6 +44,7 @@ function renderTodos() {
     // Add event listener for delete button
     deleteBtn.addEventListener('click', () => {
       todos = todos.filter(item => item !== todo);
+      showEditSuccessMessage("Todo Deleted")
       renderTodos();
     });
   
@@ -56,6 +55,7 @@ function renderTodos() {
       if (newTodo !== null) {
         todos = todos.map(item => item === todo ? newTodo : item);
         renderTodos();
+        showEditSuccessMessage("Todo edited")
       }
     });
   });
@@ -70,13 +70,23 @@ form.addEventListener('submit', event => {
     todos.push(todo);
     input.value = '';
     renderTodos();
+    showEditSuccessMessage("Todo Added")
+
   }
 });
 
+// function showAlert(message) {
+//     alert(message);
+//     setTimeout(() => {
+//       alert.close();
+//     }, 3000);
+//   }
 
-let b = setTimeout(()=>{
-    if(editBtn == editBtn){
-        alert("edit sucessfully")
-    }
-}, 1000)
-console.log(b)
+  function showEditSuccessMessage(message) {
+    const popup = document.getElementById("edit-popup");
+    popup.textContent = message;
+    popup.classList.add("show");
+    setTimeout(() => {
+      popup.classList.remove("show");
+    }, 2000);
+  }
