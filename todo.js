@@ -5,76 +5,72 @@ const input = document.querySelector('#todo-input');
 const list = document.querySelector('#todo-list');
 let todos = [];
 
-// console.log(form)
-// console.log( document.body.firstChild)
-
-let a = document.getElementById('todo-list')
-console.log(a.firstElementChild)
-// const red = () =>{
-//   let a = document.getElementsByClassName("submit")​
-
 // Function to render the todo list
 function renderTodos() {
-  // Clear the list
-  list.innerHTML = '';
-  
-  // Loop through each todo and add it to the list
-  todos.forEach(todo => {
-    const todoItem = document.createElement('div');
-    todoItem.classList.add('todo-item');
-    console.log(todoItem)
-    console.log(todos)
-    
-    const label = document.createElement('label'); //lable
-    label.textContent = todo;
+    // Clear the list
+    list.innerHTML = '';
 
-    // console.log(newTask)
-    
-    const deleteBtn = document.createElement('button');
-    deleteBtn.textContent = 'Delete';
-    
-    const editBtn = document.createElement('button');
-    editBtn.textContent = 'Edit';
-    
-    todoItem.appendChild(label);
-    todoItem.appendChild(editBtn);
-    todoItem.appendChild(deleteBtn);
-    list.appendChild(todoItem);
-    
-    // Add event listener for delete button
-    deleteBtn.addEventListener('click', () => {
-      todos = todos.filter(item => item !== todo);
-      showEditSuccessMessage("Todo Deleted")
-      renderTodos();
+    // Loop through each todo and add it to the list
+    todos.forEach(todo => {
+        const todoItem = document.createElement('div');
+        todoItem.classList.add('todo-item');
+
+        const label = document.createElement('label'); //lable
+        label.textContent = todo;
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+
+        const editBtn = document.createElement('button');
+        editBtn.textContent = 'Edit';
+
+        todoItem.appendChild(label);
+        todoItem.appendChild(editBtn);
+        todoItem.appendChild(deleteBtn);
+        list.appendChild(todoItem);
+
+        // Add event listener for delete button
+        deleteBtn.addEventListener('click', () => {
+            todos = todos.filter(item => item !== todo);
+            showEditSuccessMessage("message", "#00ffff")
+            renderTodos();
+        });
+
+        // Add event listener for edit button
+        editBtn.addEventListener('click', () => {
+            const newTodo = prompt('Enter new todo:', todo);
+
+            if (newTodo !== null) {
+                todos = todos.map(item => item === todo ? newTodo : item);
+                renderTodos();
+                showEditSuccessMessage("Todo edited", "white")
+            }
+        });
     });
-  
-    // Add event listener for edit button
-    editBtn.addEventListener('click', () => {
-      const newTodo = prompt('Enter new todo:', todo);
-      
-      if (newTodo !== null) {
-        todos = todos.map(item => item === todo ? newTodo : item);
-        renderTodos();
-        showEditSuccessMessage("Todo edited")
-      }
-    });
-  });
 }
 
 // Add event listener for form submission
 form.addEventListener('submit', event => {
-  event.preventDefault();
-  const todo = input.value.trim();
-  
-  if (todo !== '') {
-    todos.push(todo);
-    input.value = '';
-    renderTodos();
-    showEditSuccessMessage("Todo Added")
+    event.preventDefault();
+    const todo = input.value.trim();
 
-  }
+    if (todo !== '') {
+        todos.push(todo);
+        input.value = '';
+        renderTodos();
+        showEditSuccessMessage("Todo Added", "white")
+    }
 });
-
+//popup message
+function showEditSuccessMessage(message, color) {
+    const popup = document.getElementById("edit-popup");
+    popup.textContent = message;
+    popup.style.color = color;
+    popup.classList.add("show");
+    setTimeout(() => {
+        popup.classList.remove("show");
+    }, 2000);
+}
 // function showAlert(message) {
 //     alert(message);
 //     setTimeout(() => {
@@ -82,11 +78,3 @@ form.addEventListener('submit', event => {
 //     }, 3000);
 //   }
 
-  function showEditSuccessMessage(message) {
-    const popup = document.getElementById("edit-popup");
-    popup.textContent = message;
-    popup.classList.add("show");
-    setTimeout(() => {
-      popup.classList.remove("show");
-    }, 2000);
-  }
