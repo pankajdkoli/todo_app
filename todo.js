@@ -3,6 +3,8 @@
 const form = document.querySelector('#todo-form');
 const input = document.querySelector('#todo-input');
 const list = document.querySelector('#todo-list');
+const errorMessage = document.getElementById('error-message');
+
 let todos = [];
 
 // Function to render the todo list
@@ -32,7 +34,7 @@ function renderTodos() {
         // Add event listener for delete button
         deleteBtn.addEventListener('click', () => {
             todos = todos.filter(item => item !== todo);
-            showEditSuccessMessage("message", "#00ffff")
+            showEditSuccessMessage("Todo Deleted", "#00ffff")
             renderTodos();
         });
 
@@ -55,10 +57,20 @@ form.addEventListener('submit', event => {
     const todo = input.value.trim();
 
     if (todo !== '') {
+        if (todos.includes(todo)) {   // same name don't allow 
+            errorMessage.style.display = 'block';
+            input.focus();
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 2000);
+            input.focus();
+            return;
+        }
         todos.push(todo);
         input.value = '';
         renderTodos();
         showEditSuccessMessage("Todo Added", "white")
+        errorMessage.style.display = 'none';
     }
 });
 //popup message
