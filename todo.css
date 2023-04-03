@@ -1,4 +1,10 @@
 /* CSS styles for the todo list */
+
+body {
+  /* background-color: grey; */
+  background-image: url("file:///Users/pankajkoli/Downloads/pexels.jpeg");
+
+}
 .todo-item {
   display: flex;
   justify-content: space-between;

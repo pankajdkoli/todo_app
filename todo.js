@@ -39,20 +39,52 @@ function renderTodos() {
             showEditSuccessMessage("Todo Deleted", "#00ffff")
             renderTodos();
         });
+        const saveBtn = document.createElement('button');
+        saveBtn.textContent = 'Save';
+        saveBtn.style.padding = '6px 25px';
+        saveBtn.style.backgroundColor = 'green';
+        saveBtn.style.color = 'white';
+        saveBtn.style.border = 'none';
+        saveBtn.style.borderRadius = '5px';
+
+        // Add event listener for edit button
+        // editBtn.addEventListener('click', () => {
+        //     const newTodo = prompt('Enter new todo:', todo);
+        //     if (newTodo !== null) {
+        //         todos = todos.map(item => item === todo ? newTodo : item);
+        //         renderTodos();
+        //         showEditSuccessMessage("Todo edited", "white")
+        //     }
+        // });
+
+        // const confirmBtn = document.createElement('button');
+        // confirmBtn.textContent = 'Save';
+        // confirmBtn.style.marginTop = '10px';
+        // confirmBtn.style.padding = '5px 10px';
 
         // Add event listener for edit button
         editBtn.addEventListener('click', () => {
-            const newTodo = prompt('Enter new todo:', todo);
+            const inputField = document.createElement('input');
+            inputField.setAttribute('type', 'text');
+            inputField.setAttribute('value', todo);
+            inputField.style.marginRight = '10px';
 
-            if (newTodo !== null) {
-                todos = todos.map(item => item === todo ? newTodo : item);
-                renderTodos();
-                showEditSuccessMessage("Todo edited", "white")
-            }
+         
+            todoItem.replaceChild(inputField, label);
+            todoItem.replaceChild(saveBtn, editBtn);
+
+            saveBtn.addEventListener('click', () => {
+                const newTodo = inputField.value.trim();
+                if (newTodo !== '') {
+                    todos = todos.map(item => item === todo ? newTodo : item);
+                    renderTodos();
+                    showEditSuccessMessage("Todo edited", "white")
+                }
+            });
         });
     });
-}
-
+};
+    
 // Add event listener for form submission
 form.addEventListener('submit', event => {
     event.preventDefault();
