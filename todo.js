@@ -22,9 +22,11 @@ function renderTodos() {
 
         const deleteBtn = document.createElement('button');
         deleteBtn.textContent = 'Delete';
+        deleteBtn.classList.add('delete-btn');
 
         const editBtn = document.createElement('button');
         editBtn.textContent = 'Edit';
+        editBtn.classList.add('edit-btn');
 
         todoItem.appendChild(label);
         todoItem.appendChild(editBtn);

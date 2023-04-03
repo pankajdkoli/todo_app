@@ -13,7 +13,7 @@
   margin-right: 10px;
 }
 
-.todo-item button {
+.todo-item .edit-btn {
   background-color: #04AA6D;
   color: white;
   font-family: 'Source Sans Pro', sans-serif;
@@ -24,9 +24,25 @@
   word-spacing: 10px;
 }
 
-.todo-item button:hover {
-  background-color: #c62828;
+.todo-item .edit-btn:hover {
+  background-color: #008CBA;
 }
+
+.todo-item .delete-btn {
+  background-color: #04AA6D;
+  color: white;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  padding: 6px 25px;
+  margin-top: 4px;
+  border-radius: 5px;
+  word-spacing: 10px;
+}
+
+.todo-item .delete-btn:hover {
+  background-color: red;
+}
+
 
 .submit {
   background-color: #04AA6D;
