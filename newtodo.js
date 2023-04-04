@@ -12,6 +12,15 @@ const mainInput = document.querySelector('#todo-form input')
 
 const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
+if (localStorage.getItem('tasks')) {
+    tasks.map((task) => {
+        createTask(task)
+
+    })
+    console.log(tasks)
+}
+
+
 todoForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
