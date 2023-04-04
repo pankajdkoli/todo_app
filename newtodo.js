@@ -12,6 +12,7 @@ const mainInput = document.querySelector('#todo-form input')
 
 const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
+//get data from local storage Shows in Ui
 if (localStorage.getItem('tasks')) {
     tasks.map((task) => {
         createTask(task)
@@ -69,5 +70,20 @@ function createTask(task) {
                   `
     taskE1.innerHTML = taskE1Markup;
     todoList.appendChild(taskE1)
+    countTasks()
+}
+
+
+function countTasks() {
+    const completedTasksArray = tasks.filter((task) => {
+        task.isCompleted === true
+    })
+
+
+    completedTask.textContent = completedTasksArray.length
+    totalTask.textContent = tasks.length
+    remainingTask.textContent = tasks.length - completedTasksArray.length
 
 }
+
+
