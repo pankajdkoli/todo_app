@@ -18,14 +18,18 @@
             <button type="submit" class="submit">Add</button>
             <p id="error-message" class="name-exist" style="color: red; display: none;">Todo with the same name already exists.</p>
         </div>
+        <div class="filters">
+            <button class="active" onclick="showAll()">Total</button>
+            <button onclick="showActive()">Active</button>
+            <button onclick="showCompleted()">Completed</button>
+          </div>
 
     </form>
-
+    
     <div id="edit-popup" class="popup"></div>
 
     <div id="todo-list" class="todo-list list-todo-border">
         <!--     List of todos will be added here -->
-
     </div>
 
     <script src="todo.js"> </script>

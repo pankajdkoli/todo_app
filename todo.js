@@ -39,14 +39,6 @@ function renderTodos() {
             showEditSuccessMessage("Todo Deleted", "#00ffff")
             renderTodos();
         });
-        const saveBtn = document.createElement('button');
-        saveBtn.textContent = 'Save';
-        saveBtn.style.padding = '6px 25px';
-        saveBtn.style.backgroundColor = 'green';
-        saveBtn.style.color = 'white';
-        saveBtn.style.border = 'none';
-        saveBtn.style.borderRadius = '5px';
-
         // Add event listener for edit button
         // editBtn.addEventListener('click', () => {
         //     const newTodo = prompt('Enter new todo:', todo);
@@ -57,25 +49,25 @@ function renderTodos() {
         //     }
         // });
 
-        // const confirmBtn = document.createElement('button');
-        // confirmBtn.textContent = 'Save';
-        // confirmBtn.style.marginTop = '10px';
-        // confirmBtn.style.padding = '5px 10px';
-
         // Add event listener for edit button
+
         editBtn.addEventListener('click', () => {
             const inputField = document.createElement('input');
             inputField.setAttribute('type', 'text');
             inputField.setAttribute('value', todo);
             inputField.style.marginRight = '10px';
 
-         
+            const saveBtn = document.createElement('button');
+            saveBtn.textContent = 'Save';
+            saveBtn.classList.add('edit-btn');
+
             todoItem.replaceChild(inputField, label);
             todoItem.replaceChild(saveBtn, editBtn);
 
             saveBtn.addEventListener('click', () => {
                 const newTodo = inputField.value.trim();
                 if (newTodo !== '') {
+                    // const editedTodo = `${newTodo}(edited)`;
                     todos = todos.map(item => item === todo ? newTodo : item);
                     renderTodos();
                     showEditSuccessMessage("Todo edited", "white")
@@ -84,7 +76,7 @@ function renderTodos() {
         });
     });
 };
-    
+
 // Add event listener for form submission
 form.addEventListener('submit', event => {
     event.preventDefault();
@@ -117,10 +109,6 @@ function showEditSuccessMessage(message, color) {
         popup.classList.remove("show");
     }, 2000);
 }
-// function showAlert(message) {
-//     alert(message);
-//     setTimeout(() => {
-//       alert.close();
-//     }, 3000);
-//   }
+
+
 

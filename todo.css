@@ -108,3 +108,9 @@ body {
   opacity: 1;
   pointer-events: auto;
 }
+
+.edited-tag {
+  font-style: italic;
+  color: gray;
+  margin-left: 10px;
+}

@@ -47,7 +47,26 @@
     text-transform: uppercase;
     color: white;
     background-color: var(--color-secondary);
+    cursor: pointer;
+
 }
+
+#todo-form button:hover{
+    background-color: var(--color-secondary-darker);
+}
+#todo-form button:active{
+    background-color: var(--color-secondary-lighter);
+}
+
+ #todo-form button,
+ #todo-form input{
+    transition: var(--global-transition);
+ }
+/* font size  */
+ small #todo-form button,
+ .stats span{
+    font-size: .75rem;
+ }
 
 /* ----------general styles */
 html{
@@ -140,7 +159,7 @@ a{
 }
 
 .todos li.complete {
-    background-color: var(--color-disableb);
+    /* background-color: var(--color-disableb); */
     text-decoration: line-through;
     color: var(--color-text-disabled);
 
@@ -157,6 +176,8 @@ input[type='checkbox'] {
     display: grid;
     place-content: center;
     transform: var(--global-transition);
+    cursor: pointer;
+
 
 }
 /* svg img url */
@@ -183,6 +204,7 @@ input[type='checkbox']:checked::before{
     display: grid;
     place-content: center;
     background-color: transparent; /* button background color */
+    cursor: pointer;
 }
 
 .todos li button svg{
