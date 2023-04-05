@@ -47,13 +47,23 @@ todoForm.addEventListener('submit', (e) => {
 
 todoList.addEventListener('click', (e) => {
     if (e.target.classList.contains('remove-task') || e.target.
-            parentElement.classList.contains('remove-task') || e.target.
+        parentElement.classList.contains('remove-task') || e.target.
             parentElement.parentElement.classList.contains('remove-task')) {
         const taskId = e.target.closest('li').id
+
         removeTask(taskId)
         // todoList.removeChild(taskId)
 
     }
+})
+
+//update
+
+todoList.addEventListener('input', (e) => {
+    const taskId = e.target.closest('li').id
+
+    updatedTask(taskId, e.target)
+    console.log(updatedTask)
 })
 // task id access assign & access 
 function createTask(task) {
@@ -103,3 +113,31 @@ function removeTask(tasksId) {
     document.getElementById(tasksId).remove()
     countTasks()
 }
+
+function updatedTask(taskId, el) {
+    const task = tasks.find((task) => task.id === parseInt(taskId))
+
+    if(el.hasAttribute('contenteditable')){
+        task.name = el.textContent
+    }else{
+        const span = el.nextElementSibling
+        const parent = el.closest('li')
+
+        task.isCompleted = !task.isCompleted
+        
+        if(task.isCompleted){
+            span.removeAttribute('contenteditable')
+            parent.classList.add('complete')
+        }else{
+            span.setAttribute('contenteditable', 'true')
+            parent.classList.remove('complete')
+
+        }
+    }
+
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+
+    countTasks()//update
+}
+
+// console.log()
