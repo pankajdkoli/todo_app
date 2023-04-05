@@ -10,7 +10,7 @@ const mainInput = document.querySelector('#todo-form input')
 
 //get from id key local storage 
 
-const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 //get data from local storage Shows in Ui
 if (localStorage.getItem('tasks')) {
@@ -18,7 +18,7 @@ if (localStorage.getItem('tasks')) {
         createTask(task)
 
     })
-    console.log(tasks)
+
 }
 
 
@@ -43,6 +43,18 @@ todoForm.addEventListener('submit', (e) => {
     mainInput.focus()
 })
 
+// when click on close button it op will remove from the task in parent li 
+
+todoList.addEventListener('click', (e) => {
+    if (e.target.classList.contains('remove-task') || e.target.
+            parentElement.classList.contains('remove-task') || e.target.
+            parentElement.parentElement.classList.contains('remove-task')) {
+        const taskId = e.target.closest('li').id
+        removeTask(taskId)
+        // todoList.removeChild(taskId)
+
+    }
+})
 // task id access assign & access 
 function createTask(task) {
     const taskE1 = document.createElement('li')
@@ -73,12 +85,10 @@ function createTask(task) {
     countTasks()
 }
 
-
+//count-task function 
 function countTasks() {
-    const completedTasksArray = tasks.filter((task) => {
-        task.isCompleted === true
-    })
-
+    const completedTasksArray = tasks.filter((task) =>
+        task.isCompleted === true)
 
     completedTask.textContent = completedTasksArray.length
     totalTask.textContent = tasks.length
@@ -86,4 +96,10 @@ function countTasks() {
 
 }
 
-
+// removeTask task function
+function removeTask(tasksId) {
+    tasks = tasks.filter((task) => task.id !== parseInt(tasksId))
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+    document.getElementById(tasksId).remove()
+    countTasks()
+}
